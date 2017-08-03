@@ -30,6 +30,8 @@ public class MunicipioController implements Serializable {
 		
 	private List<Uf> ufList;
 	private List<Municipio> municipioList;
+	private String nome = "Teste string";
+	
 
 	@PostConstruct
 	private void init(){
@@ -57,5 +59,17 @@ public class MunicipioController implements Serializable {
 
 	public void setMunicipioList(List<Municipio> municipioList) {
 		this.municipioList = municipioList;
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }
