@@ -53,7 +53,7 @@ public class MunicipioRestService implements Serializable{
 
 	}
 	
-	public  List<Municipio> listarCidades(String uf) throws Exception{
+	public  List<Municipio> listarMunicipios(String uf) throws Exception{
 		
 		conectaWS(uf);
 		
