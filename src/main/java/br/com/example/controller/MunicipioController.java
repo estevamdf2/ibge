@@ -32,7 +32,7 @@ public class MunicipioController implements Serializable {
 		
 	private List<Uf> ufList;
 	private List<Municipio> municipioList;
-	private String nome = "Teste string";
+	private String nome = "Ola JSF";
 	
 
 	@PostConstruct
