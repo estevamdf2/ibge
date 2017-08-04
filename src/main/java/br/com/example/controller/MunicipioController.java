@@ -27,6 +27,8 @@ public class MunicipioController implements Serializable {
 	@Inject
 	private MunicipioRestService municipioRestService;
 	
+	@Inject
+	private Uf uf; 
 		
 	private List<Uf> ufList;
 	private List<Municipio> municipioList;
@@ -39,17 +41,15 @@ public class MunicipioController implements Serializable {
 		municipioList = new ArrayList<Municipio>();
 	}
 
-	
+	public void listarUfs() throws Exception {
+		ufList = ufRestService.listarUfs();
+	}
 	
 	public List<Uf> getUfList() {
 		return ufList;
 	}
 
 	public void setUfList(List<Uf> ufList) {
-		Uf uf = new Uf();
-		uf.setCodigo("10");
-		uf.setSigla("BR");
-		ufList.add(uf);
 		this.ufList = ufList;
 	}
 
@@ -71,5 +71,17 @@ public class MunicipioController implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+
+
+	public Uf getUf() {
+		return uf;
+	}
+
+
+
+	public void setUf(Uf uf) {
+		this.uf = uf;
 	}
 }
