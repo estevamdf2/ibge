@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
@@ -8,20 +7,14 @@
 <h:head>
 	<title>IBGE - Listagem UF e Municipios</title>
 </h:head>
-<body>
-<h:form>
-			<h:outputText value="test" />
-			<h:outputText value="#{municipioController.nome}" />
-</h:form>
+<h:body>
 	<div align="center">
 		<fieldset>
 			<legend>Dados UF e Municipios</legend>
 			<p>campos</p>
-			
-			
+
 			<h:outputText value="#{municipioController.nome}" />
 		</fieldset>
 	</div>
-
-</body>
+</h:body>
 </html>

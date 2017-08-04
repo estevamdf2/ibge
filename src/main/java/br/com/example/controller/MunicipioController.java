@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import br.com.example.model.Municipio;
 import br.com.example.model.Uf;
 import br.com.example.rest.service.MunicipioRestService;
 import br.com.example.rest.service.UfRestService;
 
-@Named
-@ViewScoped
+@RequestScoped
+@ManagedBean
 public class MunicipioController implements Serializable {
 
 	
