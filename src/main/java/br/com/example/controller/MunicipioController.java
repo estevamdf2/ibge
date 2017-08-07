@@ -4,18 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.example.model.Municipio;
 import br.com.example.model.Uf;
-import br.com.example.rest.service.MunicipioRestService;
 import br.com.example.rest.service.UfRestService;
 
 @RequestScoped
-@ManagedBean
+@Named
 public class MunicipioController implements Serializable {
 
 	
@@ -24,12 +23,10 @@ public class MunicipioController implements Serializable {
 	@Inject
 	private UfRestService ufRestService;
 	
-	@Inject
-	private MunicipioRestService municipioRestService;
 	
 	@Inject
 	private Uf uf; 
-		
+	
 	private List<Uf> ufList;
 	private List<Municipio> municipioList;
 	private String nome = "Ola JSF";
@@ -41,8 +38,8 @@ public class MunicipioController implements Serializable {
 		municipioList = new ArrayList<Municipio>();
 	}
 
-	public void listarUfs() throws Exception {
-		ufList = ufRestService.listarUfs();
+	public List<Uf> listarUfs() throws Exception {
+		return	ufList = ufRestService.listarUfs();
 	}
 	
 	public List<Uf> getUfList() {

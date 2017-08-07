@@ -14,7 +14,14 @@
 			<p>campos</p>
 
 			<h:outputText value="#{municipioController.nome}" />
+			
 		
+		<h:selectOneMenu id="uf" value="#{municipioController.uf.sigla}" label="UF">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true"
+					escapeItem="true" />
+				<f:selectItems value="#{municipioController.listarUfs()}" var="ufs"
+					itemValue="#{ufs.sigla}" itemLabel="#{ufs.sigla}" />
+			</h:selectOneMenu>
 		</fieldset>
 	</div>
 </h:body>
