@@ -34,7 +34,7 @@ public class UfRestService {
 			url = new URL(URL_WS);
 			con = (HttpURLConnection) url.openConnection();
 
-			if (con.getResponseCode() == HTTP_COD_SUCESSO) {
+			if (con.getResponseCode() != HTTP_COD_SUCESSO) {
 				throw new RuntimeException("HTTP error code : "+ con.getResponseCode());
 			}
 
