@@ -13,15 +13,26 @@
 			<legend>Dados UF e Municipios</legend>
 			<p>campos</p>
 
-			<h:outputText value="#{municipioController.nome}" />
+			<h:outputText  value="#{municipioController.nome}" />
+			<br />
 			
 		
 		<h:selectOneMenu id="uf" value="#{municipioController.uf.sigla}" label="UF">
 				<f:selectItem itemLabel="Selecione" noSelectionOption="true"
+					escapeItem="true" itemValue=""/>
+				<f:selectItems value="#{municipioController.listarUfs()}" var="uf"
+					itemValue="#{municipioController.uf}" itemLabel="#{uf.sigla}" />
+					<p:ajax event="change" update="municipio"/>
+		</h:selectOneMenu>
+		
+		<br />
+		<h:selectOneMenu id="municipio" value="#{municipioController.municipio.nome}" label="Município">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true"
 					escapeItem="true" />
-				<f:selectItems value="#{municipioController.listarUfs()}" var="ufs"
-					itemValue="#{ufs.sigla}" itemLabel="#{ufs.sigla}" />
-			</h:selectOneMenu>
+				<f:selectItems value="#{municipioController.listarMunicipios(municipioController.uf.sigla)}" var="mun"
+					itemValue="#{mun}" itemLabel="#{mun.nome}" />
+		</h:selectOneMenu>
+		 
 		</fieldset>
 	</div>
 </h:body>

@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import br.com.example.model.Municipio;
 import br.com.example.model.Uf;
+import br.com.example.rest.service.MunicipioRestService;
 import br.com.example.rest.service.UfRestService;
 
-@RequestScoped
-@Named
+@ManagedBean
 public class MunicipioController implements Serializable {
 
 	
@@ -23,9 +22,13 @@ public class MunicipioController implements Serializable {
 	@Inject
 	private UfRestService ufRestService;
 	
+	@Inject
+	private MunicipioRestService municipioRestService;
+	
+	private Uf uf;
 	
 	@Inject
-	private Uf uf; 
+	private Municipio municipio; 
 	
 	private List<Uf> ufList;
 	private List<Municipio> municipioList;
@@ -33,13 +36,22 @@ public class MunicipioController implements Serializable {
 	
 
 	@PostConstruct
-	private void init(){
+	private void init() throws Exception{
+		
+		if(uf == null){
+			uf = new Uf();
+		}
 		ufList = new ArrayList<Uf>();
 		municipioList = new ArrayList<Municipio>();
+		System.out.println("Uf "+uf.getSigla());
 	}
 
 	public List<Uf> listarUfs() throws Exception {
 		return	ufList = ufRestService.listarUfs();
+	}
+	
+	public List<Municipio> listarMunicipios(String uf) throws Exception {
+		return	municipioList = municipioRestService.listarMunicipios(uf);
 	}
 	
 	public List<Uf> getUfList() {
@@ -80,5 +92,13 @@ public class MunicipioController implements Serializable {
 
 	public void setUf(Uf uf) {
 		this.uf = uf;
+	}
+
+	public Municipio getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
 	}
 }
