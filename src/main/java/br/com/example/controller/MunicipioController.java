@@ -54,7 +54,7 @@ public class MunicipioController {
 
 			ufItens.add(selectItem);
 		}
-
+		
 		return ufItens;
 	}
 
@@ -139,6 +139,5 @@ public class MunicipioController {
 	public void setMunicipioItens(List<SelectItem> municipioItens) {
 		this.municipioItens = municipioItens;
 	}
-	
 	
 }

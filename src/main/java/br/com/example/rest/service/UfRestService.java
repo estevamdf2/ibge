@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +76,16 @@ public class UfRestService {
             //Adiciona a uf a um list
             ufList.add(uf);
 		}
+		
+		Collections.sort(ufList, new Comparator<Uf>() {
+
+			@Override
+			public int compare(Uf uf1, Uf uf2) {
+				// TODO Auto-generated method stub
+				return uf1.getSigla().compareTo(uf2.getSigla());
+			}
+		
+		});
 		
 		return ufList;
 

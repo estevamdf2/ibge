@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +79,14 @@ public class MunicipioRestService implements Serializable{
             //Adiciona a uf a um list
             cidadesList.add(municipio);
 		}
+		
+		Collections.sort(cidadesList, new Comparator<Municipio>() {
+
+			@Override
+			public int compare(Municipio municipio1, Municipio municipio2) {
+				return municipio1.getNome().compareTo(municipio2.getNome());
+			}
+		});
 		
 		return cidadesList;
 

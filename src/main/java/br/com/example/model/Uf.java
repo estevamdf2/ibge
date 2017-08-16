@@ -1,6 +1,6 @@
 package br.com.example.model;
 
-public class Uf {
+public class Uf{
 
 
 	private String sigla;
@@ -18,5 +18,17 @@ public class Uf {
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	} 
+	}
+/*	@Override
+	public int compareTo(Uf uf2) {
+
+		if(Integer.parseInt(this.codigo) < Integer.parseInt(uf2.getCodigo())) {
+			return -1;
+		}
+		
+		if(Integer.parseInt(this.codigo) > Integer.parseInt(uf2.getCodigo())) {
+			return 1;
+		}
+		return 0;
+	} */
 }
