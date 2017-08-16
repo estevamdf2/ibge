@@ -1,11 +1,12 @@
 package br.com.example.controller;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 import javax.inject.Inject;
 
 import br.com.example.model.Municipio;
@@ -14,52 +15,113 @@ import br.com.example.rest.service.MunicipioRestService;
 import br.com.example.rest.service.UfRestService;
 
 @ManagedBean
-public class MunicipioController implements Serializable {
+public class MunicipioController {
 
-	
-	private static final long serialVersionUID = -6294383961526274574L;
-	
+
 	@Inject
 	private UfRestService ufRestService;
-	
+
 	@Inject
 	private MunicipioRestService municipioRestService;
-	
-	private Uf uf;
-	
-	@Inject
-	private Municipio municipio; 
-	
+
+	private String siglaUF;
+	private String nomeMunicipio; 
+
 	private List<Uf> ufList;
 	private List<Municipio> municipioList;
-	private String nome = "Ola JSF";
-	
+	private List<SelectItem> ufItens;
+	private List<SelectItem> municipioItens;
+
+
 
 	@PostConstruct
 	private void init() throws Exception{
-		
-		if(uf == null){
-			uf = new Uf();
-		}
-		ufList = new ArrayList<Uf>();
-		municipioList = new ArrayList<Municipio>();
-		System.out.println("Uf "+uf.getSigla());
+
+		siglaUF = new String();
+		listarUfs();
 	}
 
-	public List<Uf> listarUfs() throws Exception {
-		return	ufList = ufRestService.listarUfs();
+	public List<SelectItem> listarUfs() throws Exception {
+
+		ufList = ufRestService.listarUfs();
+		for (Uf ufAux : ufList) {
+			SelectItemGroup selectItem = new SelectItemGroup();
+			selectItem.setSelectItems(new SelectItem[] {new SelectItem(ufAux.getSigla(),ufAux.getSigla())});
+
+			if(ufItens == null) {
+				ufItens = new ArrayList<SelectItem>();
+			}
+
+			ufItens.add(selectItem);
+		}
+
+		return ufItens;
 	}
-	
-	public List<Municipio> listarMunicipios(String uf) throws Exception {
-		return	municipioList = municipioRestService.listarMunicipios(uf);
+
+	public List<SelectItem> listarMunicipios() throws Exception {
+		
+		municipioList = municipioRestService.listarMunicipios(siglaUF);
+		for (Municipio municipioAux : municipioList) {
+			
+			if(municipioItens == null) {
+				municipioItens = new ArrayList<SelectItem>();
+			}
+			
+			SelectItemGroup selectMunicipio = new SelectItemGroup();
+			selectMunicipio.setSelectItems(new SelectItem[] {new SelectItem(municipioAux.getNome(), municipioAux.getNome())});
+			
+			municipioItens.add(selectMunicipio);
+		}
+		
+		return	municipioItens;
 	}
-	
+
+	public UfRestService getUfRestService() {
+		return ufRestService;
+	}
+
+	public void setUfRestService(UfRestService ufRestService) {
+		this.ufRestService = ufRestService;
+	}
+
+	public MunicipioRestService getMunicipioRestService() {
+		return municipioRestService;
+	}
+
+	public void setMunicipioRestService(MunicipioRestService municipioRestService) {
+		this.municipioRestService = municipioRestService;
+	}
+
+	public String getSiglaUF() {
+		return siglaUF;
+	}
+
+	public void setSiglaUF(String siglaUF) {
+		this.siglaUF = siglaUF;
+	}
+
+	public String getNomeMunicipio() {
+		return nomeMunicipio;
+	}
+
+	public void setNomeMunicipio(String nomeMunicipio) {
+		this.nomeMunicipio = nomeMunicipio;
+	}
+
 	public List<Uf> getUfList() {
 		return ufList;
 	}
 
 	public void setUfList(List<Uf> ufList) {
 		this.ufList = ufList;
+	}
+
+	public List<SelectItem> getUfItens() {
+		return ufItens;
+	}
+
+	public void setUfItens(List<SelectItem> ufItens) {
+		this.ufItens = ufItens;
 	}
 
 	public List<Municipio> getMunicipioList() {
@@ -70,35 +132,13 @@ public class MunicipioController implements Serializable {
 		this.municipioList = municipioList;
 	}
 
-
-
-	public String getNome() {
-		return nome;
+	public List<SelectItem> getMunicipioItens() {
+		return municipioItens;
 	}
 
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setMunicipioItens(List<SelectItem> municipioItens) {
+		this.municipioItens = municipioItens;
 	}
-
-
-
-	public Uf getUf() {
-		return uf;
-	}
-
-
-
-	public void setUf(Uf uf) {
-		this.uf = uf;
-	}
-
-	public Municipio getMunicipio() {
-		return municipio;
-	}
-
-	public void setMunicipio(Municipio municipio) {
-		this.municipio = municipio;
-	}
+	
+	
 }

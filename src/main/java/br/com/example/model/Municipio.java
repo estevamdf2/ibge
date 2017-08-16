@@ -1,7 +1,7 @@
 package br.com.example.model;
 
 public class Municipio {
-
+	
 	private String nome;
 	private String codigo;
 	
